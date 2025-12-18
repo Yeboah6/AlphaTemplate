@@ -5,7 +5,8 @@ import {
 import '../../Styles/styles.css';
 import Header from '../../components/common/header.jsx';
 
-import { id, label, icon, home } from '../OverView/OV_index.jsx';
+import OverView, { id, label, icon, home } from '../OverView/OV_index.jsx';
+import { QuickActionsModal } from '../OverView/QuickActionsModal.jsx';
 import { sam_id, sam_label, sam_icon, dashboard } from '../SuperAdminManagement/SAM_index.jsx';
 import {sh_id, sh_label, sh_icon, sh_email } from '../SystemInfrastructure/SH_index.jsx';
 import { p_id, p_label, p_icon, p_platform } from '../ActivityLogs/P_index.jsx';
@@ -14,6 +15,7 @@ import { per_id, per_label, per_icon, per_performance } from '../Performance/P_i
 
 export default function NotikaDashboard() {
   const [activeTab, setActiveTab] = useState('home');
+  const [showQuickActionsModal, setShowQuickActionsModal] = useState(false);
 
   const tabs = [
     { id: id, label: label, icon: icon },
@@ -114,14 +116,33 @@ export default function NotikaDashboard() {
             {/* Tab Content */}
             <div className="tabs-content">
               {tabContent[activeTab]?.map((item, index) => (
-                <div key={index} className="tab-item">
+                <div 
+                  key={index} 
+                  className="tab-item"
+                  onClick={() => {
+                    if (item.title === "Quick Actions") {
+                      setShowQuickActionsModal(true);
+                    } else if (item.action) {
+                      item.action();
+                    }
+                  }}
+                  style={{ cursor: 'pointer' }}
+                >
                   {item.icon}
                   <h3 className="tab-title">{item.title}</h3>
-                  <p className="tab-description">{item.description}</p>
+                  <p className="tab-description">{item.description || (item.title === "Quick Actions")}</p>
                 </div>
               ))}
             </div>
+
+            <OverView />
       </main>
+
+      {/* Quick Actions Modal */}
+      <QuickActionsModal 
+        isOpen={showQuickActionsModal}
+        onClose={() => setShowQuickActionsModal(false)}
+      />
     </div>
   );
 }
