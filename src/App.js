@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import NotikaDashboard from './pages/RootAdmin/RA_index.jsx';
+import LoginScreen from './components/features/Auth/login.jsx';
+import MFAPage from './components/features/Auth/multi_factor.jsx';
+
+import { createBrowserRouter, RouterProvider } from "react-router";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <LoginScreen />,
+    },
+    {
+      path: "/multi-factor-auth",
+      element: <MFAPage />,
+    },
+    {
+      path: "/dashboard",
+      element: <NotikaDashboard />,
+    },
+  ]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RouterProvider router={router} />
     </div>
   );
-}
+};
 
 export default App;
