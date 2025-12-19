@@ -3,6 +3,7 @@ import {
   Home, CheckSquare, LayoutDashboard
 } from 'lucide-react';
 import '../../Styles/styles.css';
+
 import { AdditionalActions } from './AdditionalActions.jsx';
 
 
@@ -27,8 +28,10 @@ export default function OverView({ id, label, icon }) {
   ];
 
   return (
-    <AdditionalActions />
-  )
+    <div className="overview-container">
+      <AdditionalActions />
+    </div>
+  );
 }
 
 export const id = 'home';

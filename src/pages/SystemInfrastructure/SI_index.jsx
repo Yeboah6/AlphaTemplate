@@ -5,7 +5,7 @@ import {
 import '../../Styles/styles.css';
 
 
-export const sh_email = [
+export const system = [
       {
         title: "Database",
         icon: <Database className="tab-icon" />,
@@ -19,20 +19,25 @@ export const sh_email = [
         icon: <CloudBackup className="tab-icon" />,
       },
       {
+        title: "Performance",
+        icon: <CloudBackup className="tab-icon" />,
+      },
+      {
         title: "Logs",
         icon: <Logs className="tab-icon" />,
       }
     ];
 
 export default function SystemInfrastructure(sh_id, sh_label, sh_icon) {
+  const [activeTab, setActiveTab] = useState('systeminfrastructure');
 
     const tabs = [
-       { sh_id: 'email', sh_label: 'System Infrastructure', sh_icon: MonitorCog },
+       { sh_id: 'system', sh_label: 'System Infrastructure', sh_icon: MonitorCog },
     ];
 
 }
 
-export const sh_id = 'email';
+export const sh_id = 'system';
 export const sh_label = 'System Infrastructure';
 export const sh_icon = MonitorCog;
 

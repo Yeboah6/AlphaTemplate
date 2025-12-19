@@ -7,15 +7,23 @@ import Header from '../../components/common/header.jsx';
 
 import OverView, { id, label, icon, home } from '../OverView/OV_index.jsx';
 import { QuickActionsModal } from '../OverView/QuickActionsModal.jsx';
-import { sam_id, sam_label, sam_icon, dashboard } from '../SuperAdminManagement/SAM_index.jsx';
-import {sh_id, sh_label, sh_icon, sh_email } from '../SystemInfrastructure/SH_index.jsx';
+
+import SuperAdminManagement, { sam_id, sam_label, sam_icon, dashboard } from '../SuperAdminManagement/SAM_index.jsx';
+import { ManageSuperAdmin } from '../SuperAdminManagement/ManageSuperAdmin.jsx';
+
+import {sh_id, sh_label, sh_icon, system } from '../SystemInfrastructure/SI_index.jsx';
+import { SystemInfrastructure } from '../SystemInfrastructure/SI_OverView.jsx';
+
 import { p_id, p_label, p_icon, p_platform } from '../ActivityLogs/P_index.jsx';
 import { s_id, s_label, s_icon, s_security } from '../Security/S_index.jsx';
 import { per_id, per_label, per_icon, per_performance } from '../Performance/P_index.jsx';
 
 export default function NotikaDashboard() {
   const [activeTab, setActiveTab] = useState('home');
+  const [superActiveTab, setSuperActiveTab] = useState('superadmin');
+  const [systemActiveTab, setSystemActiveTab] = useState('systeminfrastructure');
   const [showQuickActionsModal, setShowQuickActionsModal] = useState(false);
+  const [showSuperAdminModal, setShowSuperAdminModal] = useState(false);
 
   const tabs = [
     { id: id, label: label, icon: icon },
@@ -29,7 +37,7 @@ export default function NotikaDashboard() {
   const tabContent = {
     home: home,
     superadmin: dashboard,
-    email: sh_email,  
+    system: system,  
     platform: p_platform,
     security: s_security,
     performance: per_performance,
@@ -122,8 +130,10 @@ export default function NotikaDashboard() {
                   onClick={() => {
                     if (item.title === "Quick Actions") {
                       setShowQuickActionsModal(true);
-                    } else if (item.action) {
-                      item.action();
+                    } else if (item.title == "Super Admin Management") {
+                      setShowSuperAdminModal(true);
+                    } else if (item.title == "System Infrastructure") {
+                      setSystemActiveTab('systeminfrastructure');
                     }
                   }}
                   style={{ cursor: 'pointer' }}
@@ -135,13 +145,20 @@ export default function NotikaDashboard() {
               ))}
             </div>
 
-            <OverView />
+            {activeTab === 'home' && <OverView />}
+            {superActiveTab === 'superadmin' && <SuperAdminManagement />}
+            {systemActiveTab === 'systeminfrastructure' && <SystemInfrastructure />}
       </main>
 
       {/* Quick Actions Modal */}
       <QuickActionsModal 
         isOpen={showQuickActionsModal}
         onClose={() => setShowQuickActionsModal(false)}
+      />
+
+      <ManageSuperAdmin
+      isOpen={showSuperAdminModal}
+      onClose={() => setShowSuperAdminModal(false)}
       />
     </div>
   );
