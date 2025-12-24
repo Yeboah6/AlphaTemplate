@@ -3,6 +3,7 @@ import {
   Shield, UserRoundCog
 } from 'lucide-react';
 import '../../Styles/styles.css';
+// import './style.css';
 
 export function QuickActionsModal({ isOpen, onClose }) {
   const quickActions = [

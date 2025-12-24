@@ -6,12 +6,13 @@ import {
   HardDriveIcon, Network, Clock, Calendar, Play,
   Pause, Shield, Download, Upload, Wrench,
   Trash2, Copy, Eye, AlertCircle, TrendingUp,
-  TrendingDown, Bell, Filter, Search, MoreVertical
+  TrendingDown, X
 } from 'lucide-react';
 import '../../Styles/styles.css';
+import './style.css';
 
 // System Infrastructure Component
-export function SystemInfrastructure() {
+export function SystemInfrastructure({ isOpen, onClose }) {
   const [activeTab, setActiveTab] = useState('database');
   const [maintenanceEnabled, setMaintenanceEnabled] = useState(false);
   const [scheduleTime, setScheduleTime] = useState('02:00');
@@ -137,17 +138,13 @@ export function SystemInfrastructure() {
     alert(`${action} ${dbName}...`);
   };
 
-  // Tabs configuration
-  const tabs = [
-    { id: 'database', label: 'Database', icon: <Database size={18} /> },
-    { id: 'servers', label: 'Servers', icon: <Server size={18} /> },
-    { id: 'backups', label: 'Backups', icon: <HardDrive size={18} /> },
-    { id: 'performance', label: 'Performance', icon: <BarChart3 size={18} /> },
-    { id: 'logs', label: 'Logs', icon: <FileText size={18} /> },
-  ];
+
+  if (!isOpen) return null;
 
   return (
-    <div className="infrastructure-container">
+    <div className="super-modal-overlay" onClick={onClose}>
+      <div className="super-actions-modal" onClick={(e) => e.stopPropagation()}>
+        <div className=" infrastructure-container">
       {/* Header */}
       <header className="infrastructure-header">
         <div className="header-left">
@@ -158,37 +155,13 @@ export function SystemInfrastructure() {
             <h1 className="page-title">SYSTEM INFRASTRUCTURE</h1>
           </div>
         </div>
-        <div className="header-right">
-          <button className="header-btn">
-            <Home size={18} />
-            <span>Dashboard</span>
-          </button>
-          <button className="header-btn">
-            <User size={18} />
-            <span>Profile</span>
-          </button>
-          <button className="header-btn logout-btn">
-            <LogOut size={18} />
-            <span>Logout</span>
-          </button>
-        </div>
+        <button 
+          className="modal-close-btn"
+          onClick={onClose}
+        >
+          <X size={20} />
+        </button>
       </header>
-
-      {/* Navigation Tabs */}
-      <nav className="infrastructure-nav">
-        <div className="nav-tabs">
-          {tabs.map(tab => (
-            <button
-              key={tab.id}
-              className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.icon}
-              <span>{tab.label}</span>
-            </button>
-          ))}
-        </div>
-      </nav>
 
       {/* Main Content */}
       <main className="infrastructure-main">
@@ -537,6 +510,8 @@ export function SystemInfrastructure() {
           </div>
         </div>
       </main>
+    </div>
+    </div>
     </div>
   );
 }

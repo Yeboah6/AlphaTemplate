@@ -7,6 +7,10 @@ import '../../Styles/styles.css';
 
 export const system = [
       {
+        title: "System Overview",
+        icon: <Database className="tab-icon" />,
+      },
+      {
         title: "Database",
         icon: <Database className="tab-icon" />,
       },

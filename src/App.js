@@ -12,7 +12,7 @@ function App() {
       element: <LoginScreen />,
     },
     {
-      path: "/multi-factor-auth",
+      path: "/multi/factor/auth",
       element: <MFAPage />,
     },
     {

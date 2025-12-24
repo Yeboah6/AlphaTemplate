@@ -7,6 +7,7 @@ import {
   Copy, Lock, AlertTriangle, Trash2, RefreshCw, LayoutDashboard, X
 } from 'lucide-react';
 import '../../Styles/styles.css';
+import './style.css';
 
 // Super Admin Management Component
 export function ManageSuperAdmin({ isOpen, onClose }) {
@@ -243,7 +244,7 @@ export function ManageSuperAdmin({ isOpen, onClose }) {
               <Users size={18} />
               SUPER ADMIN LIST
             </h2>
-            <span className="panel-count">{filteredAdmins.length} admins</span>
+            <span className="panel-count">{filteredAdmins.length} Admins</span>
           </div>
           
           <div className="table-container">

@@ -8,7 +8,7 @@ import '../../Styles/styles.css';
 
 export const dashboard = [
     {
-      title: "Super Admin Management",
+      title: "Super Admin Overview",
       icon: <LayoutDashboard className="tab-icon" />,
     },
   ];
@@ -24,5 +24,3 @@ export default function SuperAdminManagement(sam_id, sam_label, sam_icon) {
 export const sam_id = 'superadmin';
 export const sam_label = 'Super Admin Management';
 export const sam_icon = LayoutDashboard;
-
-

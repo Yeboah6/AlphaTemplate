@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Lock, User, Shield, AlertCircle, LogIn, Eye, EyeOff, Server,
 } from 'lucide-react';
-import '../../../Styles/styles.css';
+import './style.css';
 
 export default function LoginPage({ onLoginSuccess }) {
   const [username, setUsername] = useState('');

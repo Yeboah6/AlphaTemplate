@@ -4,6 +4,7 @@ import {
   CloudBackup
 } from 'lucide-react';
 import '../../Styles/styles.css';
+import './style.css';
 
 
 export function AdditionalActions() {

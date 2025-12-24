@@ -5,7 +5,11 @@ import {
 import '../../Styles/styles.css';
 
 
-export const per_performance = [
+export const emergencyProtocol = [
+      {
+        title: "Emergency Overview",
+        icon: <Table className="tab-icon" />,
+      },
       {
         title: "Security Breach",
         icon: <Table className="tab-icon" />,
@@ -24,14 +28,13 @@ export const per_performance = [
       }
     ];
 
-export default function Performance(per_id, per_label, per_icon) {
+export default function Emergency(emer_id, emer_label, emer_icon) {
 
     const tabs = [
-       { id: 'performance', label: 'Emergency Protocols', icon: Activity },
+       { id: 'emergency', label: 'Emergency Protocols', icon: Activity },
     ];
-
 }
 
-export const per_id = 'performance';
-export const per_label = 'Emergency Protocols';
-export const per_icon = Activity;
+export const emer_id = 'emergency';
+export const emer_label = 'Emergency Protocols';
+export const emer_icon = Activity;

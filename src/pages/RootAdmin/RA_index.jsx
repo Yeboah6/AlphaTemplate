@@ -15,15 +15,25 @@ import {sh_id, sh_label, sh_icon, system } from '../SystemInfrastructure/SI_inde
 import { SystemInfrastructure } from '../SystemInfrastructure/SI_OverView.jsx';
 
 import { p_id, p_label, p_icon, p_platform } from '../ActivityLogs/P_index.jsx';
+
 import { s_id, s_label, s_icon, s_security } from '../Security/S_index.jsx';
-import { per_id, per_label, per_icon, per_performance } from '../Performance/P_index.jsx';
+import { SecurityCompliance } from '../Security/S_OverView.jsx';
+
+import { emer_id, emer_label, emer_icon, emergencyProtocol } from '../Emergency/E_index.jsx';
+import { EmergencyProtocols } from '../Emergency/Emergency_OverView.jsx';
 
 export default function NotikaDashboard() {
   const [activeTab, setActiveTab] = useState('home');
   const [superActiveTab, setSuperActiveTab] = useState('superadmin');
   const [systemActiveTab, setSystemActiveTab] = useState('systeminfrastructure');
+  const [securityActiveTab, setSecurityActiveTab] = useState('securitycompliance');
+  const [emergencyActiveTab, setEmergencyActiveTab] = useState('emergencyprotocols');
+
   const [showQuickActionsModal, setShowQuickActionsModal] = useState(false);
   const [showSuperAdminModal, setShowSuperAdminModal] = useState(false);
+  const [showSystemOverView, setShowSystemOverView] = useState(false);
+  const [showSecurityOverView, setShowSecurityOverView] = useState(false);
+  const [ showEmergencyOverView, setShowEmergencyOverView] = useState(false);
 
   const tabs = [
     { id: id, label: label, icon: icon },
@@ -31,7 +41,7 @@ export default function NotikaDashboard() {
     { id: sh_id, label: sh_label, icon: sh_icon },
     { id: p_id, label: p_label, icon: p_icon },
     { id: s_id, label: s_label, icon: s_icon },
-    { id: per_id, label: per_label, icon: per_icon },
+    { id: emer_id, label: emer_label, icon: emer_icon },
   ];
 
   const tabContent = {
@@ -40,7 +50,7 @@ export default function NotikaDashboard() {
     system: system,  
     platform: p_platform,
     security: s_security,
-    performance: per_performance,
+    emergency: emergencyProtocol,
   };
 
   return (
@@ -130,10 +140,14 @@ export default function NotikaDashboard() {
                   onClick={() => {
                     if (item.title === "Quick Actions") {
                       setShowQuickActionsModal(true);
-                    } else if (item.title == "Super Admin Management") {
+                    } else if (item.title == "Super Admin Overview") {
                       setShowSuperAdminModal(true);
-                    } else if (item.title == "System Infrastructure") {
-                      setSystemActiveTab('systeminfrastructure');
+                    } else if (item.title == "System Overview") {
+                      setShowSystemOverView(true);
+                    } else if (item.title == "Security Overview") {
+                      setShowSecurityOverView(true);
+                    } else if (item.title == "Emergency Overview") {
+                      setShowEmergencyOverView(true);
                     }
                   }}
                   style={{ cursor: 'pointer' }}
@@ -148,6 +162,7 @@ export default function NotikaDashboard() {
             {activeTab === 'home' && <OverView />}
             {superActiveTab === 'superadmin' && <SuperAdminManagement />}
             {systemActiveTab === 'systeminfrastructure' && <SystemInfrastructure />}
+            {securityActiveTab === 'securitycompliance' && <SecurityCompliance />}
       </main>
 
       {/* Quick Actions Modal */}
@@ -159,6 +174,21 @@ export default function NotikaDashboard() {
       <ManageSuperAdmin
       isOpen={showSuperAdminModal}
       onClose={() => setShowSuperAdminModal(false)}
+      />
+
+      <SystemInfrastructure
+      isOpen={showSystemOverView}
+      onClose={() => setShowSystemOverView(false)}
+      />
+
+      <SecurityCompliance 
+      isOpen={showSecurityOverView}
+      onClose={() => setShowSecurityOverView(false)}
+      />
+
+      <EmergencyProtocols 
+      isOpen={showEmergencyOverView}
+      onClose={() => setShowEmergencyOverView(false)}
       />
     </div>
   );

@@ -1,30 +1,30 @@
 import React, { useState } from "react";
 import { 
-  BarChart2, Settings, PieChart, KeyRound
+  Lock, Shield, Eye, FileText, KeyRound, ShieldCheck
 } from 'lucide-react';
 import '../../Styles/styles.css';
 
 
 export const s_security = [
       {
-        title: "Overview",
-        icon: <BarChart2 className="tab-icon" />,
+        title: "Security Overview",
+        icon: <Shield className="tab-icon" />,
       },
       {
         title: "Encryption",
-        icon: <BarChart2 className="tab-icon" />,
+        icon: <Lock className="tab-icon" />,
       },
       {
         title: "Policies",
-        icon: <PieChart className="tab-icon" />,
+        icon: <FileText className="tab-icon" />,
       },
       {
         title: "Audit Logs",
-        icon: <Settings className="tab-icon" />,
+        icon: <Eye className="tab-icon" />,
       },
       {
         title: "Compliance",
-        icon: <Settings className="tab-icon" />,
+        icon: <ShieldCheck className="tab-icon" />,
       }
     ];
 

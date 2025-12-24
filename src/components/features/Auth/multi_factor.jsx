@@ -6,7 +6,7 @@ import {
   Clock,
   Lock, ChevronLeft, RefreshCw, Fingerprint, Eye, EyeOff,
 } from 'lucide-react';
-import '../../../Styles/styles.css';
+import './style.css';
 
 export default function MFAPage({ onVerificationSuccess, onBack }) {
   const [selectedMethod, setSelectedMethod] = useState('authenticator');
